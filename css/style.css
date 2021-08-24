@@ -1,0 +1,21 @@
+main{
+  width: 70%;
+  margin: 0 auto;
+  background-color: aquamarine;
+}
+h1{
+  text-transform: uppercase;
+}
+table{
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+table td{
+  width: 44px;
+  height: 44px;
+  border: 1px solid black;
+}
+.removeStyle td:first-child{
+  border: none;
+}
