@@ -49,7 +49,7 @@ function winCombin(move) {
   return win
 }
 
-document.querySelectorAll("button").forEach(item => item.addEventListener("click", e => {
+document.querySelectorAll("button.field").forEach(item => item.addEventListener("click", e => {
   removeElem(allBox);
   fieldSet(e.target.value);
   move = e.target.value;
@@ -58,6 +58,7 @@ document.querySelectorAll("button").forEach(item => item.addEventListener("click
 //Функция изменения размера поля в зависимости от игры
 function fieldSet(fieldParam) {
   allBox.style.setProperty('--main-field-width', `${50 * fieldParam}px`)
+  main_head.style.setProperty('--main-head-height', `${50 * fieldParam}px`)
   for (let i = 0; i < fieldParam ** 2; i++) {
     allBox.append(createElem("div", "oneBox", "click", tictactoe));
   }

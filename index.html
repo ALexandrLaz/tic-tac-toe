@@ -9,16 +9,38 @@
 </head>
 <body>
   <main>
-    <section>
-      <h1>Крестики нолики</h1>
+    <h1>Крестики нолики</h1>
+    <section id="main_head">
+      <div class="info">
         <nav>
-          <ul>
-            <li><button value="3"> 3 x 3</button></li>
-            <li><button value="4">4 x 4</button></li>
-            <li><button value="6">6 x 6</button></li>
-            <li><button value="8">8 x 8</button></li>
+          <h4>Выберите поле</h4>
+          <ul class="razmer">
+            <li><button value="3" class="restart field">3 x 3</button></li>
+            <li><button value="4" class="restart field">4 x 4</button></li>
+            <li><button value="5" class="restart field">5 x 5</button></li>
+            <li><button value="6" class="restart field">6 x 6</button></li>
+            <li><button value="8" class="restart field">8 x 8</button></li>
           </ul>
+          <div class="razmer">
+            <button id="restart" class="restart">Переиграть</button>
+            <button id="restart_all" class="restart">Переиграть все</button>
+          </div>
         </nav>
+        <table>
+          <tr>
+            <th>Побед</th>
+            <th>Победили</th>
+          </tr>
+          <tr>
+            <td id="xWin">0</td>
+            <td>Крестики</td>
+          </tr>
+          <tr>
+            <td id="oWin">0</td>
+            <td>Нолики</td>
+          </tr>
+        </table>
+      </div>
     </section>
     <section id="allBox">
     </section>
