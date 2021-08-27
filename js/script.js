@@ -2,6 +2,8 @@
 const allBox = document.querySelector("#allBox");
 let move = 4; // Поскольку изначально поле 4 х 4
 let arrWin = [];
+let winX = 0;
+let win0 = 0;
 winCombin(move)
 fieldSet(move);
 
@@ -84,17 +86,19 @@ function removeElem(parent) {
 
 let prev = "";
 function tictactoe(e) {
-  if (prev == "" && e.target.innerHTML == "") {
-    e.target.innerHTML = "X";
-    prev = "X";
-  } else if (prev == "X" && e.target.innerHTML == "") {
-    e.target.innerHTML = "O";
-    prev = "O";
-  } else if (prev = "O" && e.target.innerHTML == "") {
-    e.target.innerHTML = "X";
-    prev = "X";
+  if (e.target.innerHTML == "") {
+    if (prev == "") {
+      e.target.innerHTML = "X";
+      prev = "X";
+    } else if (prev == "X") {
+      e.target.innerHTML = "O";
+      prev = "O";
+    } else if (prev = "O") {
+      e.target.innerHTML = "X";
+      prev = "X";
+    }
+    checkWin(prev, move);
   }
-  checkWin(prev, move);
 }
 
 function checkWin(step, move) {
@@ -105,16 +109,24 @@ function checkWin(step, move) {
       if (allBox.children[arrWin[i][j]].innerHTML == step) {
         repeat++;
         if (repeat == +move) {
-          document.getElementsByTagName("h3")[0].innerHTML = `The winner is ${step}`;
+          document.getElementsByTagName("h3")[0].innerHTML = `Победили ${step}`;
           document.querySelector(".modal").style.display = "block";
+          step == "X" ? xWin.innerHTML++ : oWin.innerHTML++;
         }
       }
     }
   }
 }
-document.querySelector(".close").addEventListener("click", () => {
+document.querySelector(".close").addEventListener("click", close);
+document.querySelector("#restart").addEventListener("click", close);
+document.querySelector("#restart_all").addEventListener("click", () => {
+  xWin.innerHTML = 0;
+  oWin.innerHTML = 0
+  close();
+});
+function close() {
   document.querySelector(".modal").style.display = "none";
   removeElem(allBox);
   fieldSet(move)
   prev = "";
-})
+}
