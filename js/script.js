@@ -4,6 +4,7 @@ let move = 4; // Поскольку изначально поле 4 х 4
 let arrWin = [];
 let winX = 0;
 let win0 = 0;
+let draw = 0;
 winCombin(move)
 fieldSet(move);
 
@@ -87,6 +88,7 @@ function removeElem(parent) {
 let prev = "";
 function tictactoe(e) {
   if (e.target.innerHTML == "") {
+    draw++;
     if (prev == "") {
       e.target.innerHTML = "X";
       prev = "X";
@@ -109,12 +111,20 @@ function checkWin(step, move) {
       if (allBox.children[arrWin[i][j]].innerHTML == step) {
         repeat++;
         if (repeat == +move) {
+          document.getElementsByTagName("h3")[1].style.display = "block";
           document.getElementsByTagName("h3")[0].innerHTML = `Победили ${step}`;
           document.querySelector(".modal").style.display = "block";
           step == "X" ? xWin.innerHTML++ : oWin.innerHTML++;
         }
       }
     }
+  }
+  console.log(draw)
+  if (draw == (move ** 2)) {
+    document.getElementsByTagName("h3")[0].innerHTML = `Вы сильные противники, у вас ничья!
+    Попробуйте еще раз!`;
+    document.getElementsByTagName("h3")[1].style.display = "none";
+    document.querySelector(".modal").style.display = "block";
   }
 }
 document.querySelector(".close").addEventListener("click", close);
