@@ -7,6 +7,9 @@ let win0 = 0;
 let draw = 0;
 winCombin(move)
 fieldSet(move);
+let playBoard = [];
+const player = "X";
+const playerAI = "O";
 
 function winCombin(move) {
   let win = [];
@@ -49,6 +52,7 @@ function winCombin(move) {
   win = win.concat(step2);
   win.push(step3, step5.reverse());
   arrWin = win;
+  playBoard = playBoard.concat(arrWin)
   return win
 }
 
@@ -119,7 +123,6 @@ function checkWin(step, move) {
       }
     }
   }
-  console.log(draw)
   if (draw == (move ** 2)) {
     document.getElementsByTagName("h3")[0].innerHTML = `Вы сильные противники, у вас ничья!
     Попробуйте еще раз!`;
@@ -140,3 +143,18 @@ function close() {
   fieldSet(move)
   prev = "";
 }
+
+
+// function draw(prev, e){
+//   let canvas = createElem("canvas", "canvasStyle");
+//   var ctx = canvas.getContext('2d');
+//   if(prev == "O"){
+//     ctx.arc(100,65,50,10,Math.PI*2,true);
+//   } else if(prev == "X"){
+//     ctx.beginPath();
+//     ctx.arc(100,65,50,10,Math.PI*2,true);
+//   }
+//   e.target.append("canvas")
+// }
+
+// console.log(draw(10, 1))
