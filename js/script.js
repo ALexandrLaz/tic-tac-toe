@@ -5,8 +5,11 @@ let arrWin = [];
 let winX = 0;
 let win0 = 0;
 let draw = 0;
-winCombin(move)
+let idItem = 0;
+let AI = false;
+winCombin(move);
 fieldSet(move);
+document.getElementById("AI").addEventListener("click", () => AI = true);
 
 function winCombin(move) {
   let win = [];
@@ -53,6 +56,7 @@ function winCombin(move) {
 }
 
 document.querySelectorAll("button.field").forEach(item => item.addEventListener("click", e => {
+  idItem = 0;
   removeElem(allBox);
   fieldSet(e.target.value);
   move = e.target.value;
@@ -75,6 +79,8 @@ function createElem(name, className, event, fn) {
   if (event != undefined && fn != undefined) {
     element.addEventListener(event, fn);
   }
+  element.setAttribute("id", idItem);
+  idItem++;
   return element;
 }
 
@@ -84,7 +90,7 @@ function removeElem(parent) {
     i--;
   }
 }
-
+// Дописать реализацию запуска для ии (типа если нажата была кнопка, то ...)
 let prev = "";
 function tictactoe(e) {
   if (e.target.innerHTML == "") {
@@ -119,7 +125,7 @@ function checkWin(step, move) {
       }
     }
   }
-  console.log(draw)
+  console.log(draw);
   if (draw == (move ** 2)) {
     document.getElementsByTagName("h3")[0].innerHTML = `Вы сильные противники, у вас ничья!
     Попробуйте еще раз!`;
@@ -135,8 +141,10 @@ document.querySelector("#restart_all").addEventListener("click", () => {
   close();
 });
 function close() {
+  prev = "";
+  draw = 0;
+  idItem = 0;
   document.querySelector(".modal").style.display = "none";
   removeElem(allBox);
   fieldSet(move)
-  prev = "";
 }
