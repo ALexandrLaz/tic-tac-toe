@@ -5,11 +5,12 @@ let arrWin = [];
 let winX = 0;
 let win0 = 0;
 let draw = 0;
-winCombin(move)
-fieldSet(move);
 let playBoard = [];
+let idItem = 0;
 const player = "X";
 const playerAI = "O";
+winCombin(move);
+fieldSet(move);
 
 function winCombin(move) {
   let win = [];
@@ -52,7 +53,6 @@ function winCombin(move) {
   win = win.concat(step2);
   win.push(step3, step5.reverse());
   arrWin = win;
-  playBoard = playBoard.concat(arrWin)
   return win
 }
 
@@ -79,6 +79,9 @@ function createElem(name, className, event, fn) {
   if (event != undefined && fn != undefined) {
     element.addEventListener(event, fn);
   }
+  element.setAttribute("id", idItem);
+  playBoard.push(idItem);
+  idItem++;
   return element;
 }
 
@@ -93,15 +96,14 @@ let prev = "";
 function tictactoe(e) {
   if (e.target.innerHTML == "") {
     draw++;
-    if (prev == "") {
+    if (prev == "" || prev == "O") {
       e.target.innerHTML = "X";
+      console.log(e.target.getAttribute("id"))
       prev = "X";
     } else if (prev == "X") {
       e.target.innerHTML = "O";
+      console.log(e.target.getAttribute("id"))
       prev = "O";
-    } else if (prev = "O") {
-      e.target.innerHTML = "X";
-      prev = "X";
     }
     checkWin(prev, move);
   }
@@ -138,6 +140,7 @@ document.querySelector("#restart_all").addEventListener("click", () => {
   close();
 });
 function close() {
+  idItem = 0;
   document.querySelector(".modal").style.display = "none";
   removeElem(allBox);
   fieldSet(move)
@@ -156,5 +159,3 @@ function close() {
 //   }
 //   e.target.append("canvas")
 // }
-
-// console.log(draw(10, 1))
