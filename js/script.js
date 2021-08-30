@@ -119,7 +119,7 @@ function checkWin(step, move) {
       }
     }
   }
-  console.log(draw)
+  console.log(draw);
   if (draw == (move ** 2)) {
     document.getElementsByTagName("h3")[0].innerHTML = `Вы сильные противники, у вас ничья!
     Попробуйте еще раз!`;
@@ -135,8 +135,9 @@ document.querySelector("#restart_all").addEventListener("click", () => {
   close();
 });
 function close() {
+  prev = "";
+  draw = 0;
   document.querySelector(".modal").style.display = "none";
   removeElem(allBox);
   fieldSet(move)
-  prev = "";
 }
